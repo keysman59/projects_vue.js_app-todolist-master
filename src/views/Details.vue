@@ -1,25 +1,26 @@
 <template>
   <div class="details">
-    <pre>
+    <!-- <pre>
       {{ todos }}
-    </pre>
-    {{JSON.stringify(currentToDo)}}
-    <!-- {{ todos[1] }} 
+    </pre> -->
+
+    <!-- {{currentToDo.todo.name}} -->
+    <!-- {{ todos[1] }}  -->
     <div class="detailst-name" @click="openName" v-if="nameOpened">
-      {{ todos[1].todo.name }}
+      {{ currentToDo.todo.name }}
     </div>
     <div class="detailst-name" v-on:keyup.enter="closeName" v-if="!nameOpened">
       <input class="detailst-name__input" v-model="name" />
     </div>
 
     <div class="detailst-desc">
-      {{ todos[1].todo.desc }}
+      {{ currentToDo.todo.desc }}
     </div>
 
     <div class="detailst-date">
-      {{ todos[1].todo.date }}
+      {{ currentToDo.todo.date }}
     </div>
-    -->
+   
   </div>
 
 </template>
@@ -76,7 +77,7 @@ export default {
       return this.$store.getters.getTodos;
     },
     currentToDo () {
-      return this.$store.getters.getTodos.find(item => item.id === this.id)
+      return this.todos.find(item => item.todo.id === parseInt(this.id))
     }
   },
   methods: {

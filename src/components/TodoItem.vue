@@ -2,11 +2,14 @@
   <div class="todo-item">
     <!-- <input class="todo-item__input" type="checkbox" v-model="data.check"/> -->
     <!-- Отобразить data.todo:
-    {{data.todo}}
-    Отобразить data:
-    {{ data }}-->
-    <router-link :to="'/tast-details/' + data.todo.index">✎</router-link>
-    <div class="index-block">{{ data.todo.index + 1 }}</div>
+    {{data.todo}}-->
+    <!-- Отобразить data:
+    <pre> 
+    {{ data }}
+    </pre>
+    {{ data }} : {{ index }} -->
+    <router-link :to="'/tast-details/' + data.todo.id">✎</router-link>
+    <div class="index-block">{{ data.todo.id + 1 }}</div>
     <div class="name-block">{{ data.todo.name }}</div>
     <div class="desc-block">{{ data.todo.desc }}</div>
     <div class="date-block">{{ data.todo.date }}</div>
