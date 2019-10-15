@@ -1,23 +1,30 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Home from './views/Home.vue'
-import Archive from './views/Archive.vue'
+import Vue from "vue";
+import Router from "vue-router";
+import Create from "./views/Create.vue";
+import TaskList from "./views/TaskList.vue";
+import Details from "./views/Details.vue";
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: Home
+      path: "/",
+      name: "create",
+      component: Create
     },
     {
-      path: '/archive',
-      name: 'archive',
-      component: Archive
+      path: "/list",
+      name: "list",
+      component: TaskList
+    },
+    {
+      path: "/tast-details/:id",
+      name: "tast-details",
+      props: true,
+      component: Details
     }
   ]
-})
+});

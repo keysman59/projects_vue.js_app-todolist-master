@@ -4,5 +4,8 @@ export default {
   },
   getArchiveTodo(state) {
     return state.todos.filter(item => item.archive)
+  },
+  getTodos(state) {
+    return state.todos
   }
 }

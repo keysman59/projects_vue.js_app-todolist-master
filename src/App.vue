@@ -1,8 +1,9 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/archive">Archive</router-link>
+      <router-link to="/">Новая задача</router-link> |
+      <router-link to="/list">Список задач</router-link> |
+      <router-link to="/tast-details">Страница вывода задачи</router-link>
     </div>
     <router-view/>
   </div>
