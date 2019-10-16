@@ -84,11 +84,14 @@ export default {
   width: 100px;
   height: 40px;
   background-color: #6c757d;
-  color: #fff;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  color: #212529;
+  background-color: #f8f9fa;
+  border-color: #d3d9df;
 }
 
 .common {
@@ -115,18 +118,22 @@ export default {
 }
 
 .active {
-  background: #545b62;
+  background-color: #dae0e5;
+  border-color: #d3d9df;
 }
 
 .common:hover {
-  background: #545b62;
+  background-color: #dae0e5;
+  border-color: #d3d9df;
 }
 
 .deadline:hover {
-  background: #545b62;
+  background-color: #dae0e5;
+  border-color: #d3d9df;
 }
 
 .archive:hover {
-  background: #545b62;
+  background-color: #dae0e5;
+  border-color: #d3d9df;
 }
 </style>
