@@ -10,6 +10,11 @@ export default {
     commit('archive', index);
     commit('saveTodo');
   },
+  task({ commit }, index) {
+    commit('task', index);
+    commit('saveTodo');
+  },
+
   setName({ commit }, { name, id } ) {
     commit('changeName', { name, id });
     commit('saveTodo');

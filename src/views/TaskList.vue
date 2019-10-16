@@ -11,6 +11,9 @@
       <todo-list type="Archive" v-if="viewArchive"></todo-list>
 
       <todo-list type="NonArchive" v-if="viewNonArchive"></todo-list>
+
+      <todo-list type="Expired" v-if="viewExpired"></todo-list>
+      
     </div>
   </div>
 </template>
@@ -36,6 +39,7 @@ export default {
     return {
       viewArchive: false,
       viewNonArchive: true,
+      viewExpired: false,
     };
   },
   methods: {
@@ -46,6 +50,10 @@ export default {
       // }
     },
     openArchiveTask() {
+      this.viewArchive = true;
+      this.viewNonArchive = false;
+    },
+    openExpiredTask() {
       this.viewArchive = true;
       this.viewNonArchive = false;
     }

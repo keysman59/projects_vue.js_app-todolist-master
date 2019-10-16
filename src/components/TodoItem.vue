@@ -10,11 +10,19 @@
     {{ data }} : {{ index }} -->
     <router-link :to="'/tast-details/' + data.todo.id">✎</router-link>
     <div class="index-block">{{ data.todo.id + 1 }}</div>
+    <div class="archive__btn-block" v-if="!data.archive">
+      <button class="todo-item__btn"  @click="setArchive">в архив</button>
+    </div>
+    <div class="archive__btn-block">
+      <button class="todo-item__btn" v-if="data.archive" @click="setTask">к выполнению</button>
+    </div>
+
     <div class="name-block">{{ data.todo.name }}</div>
+    <div class="name-block">{{ data.expired }}</div>
     <div class="desc-block">{{ data.todo.desc | truncate(data.todo.desc.length, '...') }}</div>
     <div class="date-block">{{ data.todo.date }}</div>
 
-    <!-- <button class="todo-item__btn" v-if="!data.archive" @click="setArchive">В архив</button> -->
+
   </div>
 </template>
 
@@ -24,6 +32,9 @@ export default {
   methods: {
     setArchive() {
       this.$store.dispatch("archive", this.index);
+    },
+    setTask() {
+      this.$store.dispatch("task", this.index);
     }
   },
   filters: {
@@ -60,7 +71,7 @@ export default {
 }
 
 .index-block {
-  width: 10%;
+  width: 3%;
   text-align: left;
 }
 
@@ -78,4 +89,14 @@ export default {
   width: 13%;
   text-align: right;
 }
+
+.archive__btn-block {
+  width: 10%;
+}
+
+.todo-item__btn {
+
+}
+
+
 </style>
