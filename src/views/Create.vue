@@ -159,6 +159,8 @@ export default {
     /* color: #FFFFFF; */
   /* background: #8071F3; */
   border: none;
+  cursor: pointer;
+  outline: none;
 }
 
 .error {

@@ -9,7 +9,7 @@ export default {
     localStorage.setItem('todos', JSON.stringify(state.todos));
   },
   addTodo(state, todo) {
-    state.todos.push({ check: false, todo, archive: false, expired: false });
+    state.todos.push({ check: false, todo, archive: true, expired: false });
   },
   archive(state, index) {
     const nonArchive = state.todos.filter(item => !item.archive);

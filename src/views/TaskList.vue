@@ -1,14 +1,16 @@
 <template>
   <div class="task-list">
     <div class="filter">
-      <div class="common">Задачи</div>
+      <div class="common" @click="openCurrentTask">Задачи</div>
       <div class="deadline">Просрочены</div>
-      <div class="archive" @click="arhiveTask">Архив</div>
+      <div class="archive" @click="openArchiveTask">Архив</div>
     </div>
 
     <div class="tasks">
-      <todo-list type="Archive"></todo-list>
-      <todo-list type="NonArchive" ></todo-list>
+      <!-- <todo-list v-bind:title="post.title"></todo-list> -->
+      <todo-list type="Archive" v-if="viewArchive"></todo-list>
+
+      <todo-list type="NonArchive" v-if="viewNonArchive"></todo-list>
     </div>
   </div>
 </template>
@@ -32,18 +34,21 @@ export default {
   },
   data() {
     return {
-      taskOpened: "true",
-      taskOpened: "true",
-      arhOpened: "false",
+      viewArchive: false,
+      viewNonArchive: true,
     };
   },
   methods: {
-    openTask() {
-      this.taskOpened = false;
+    openCurrentTask() {
+      // if(this.viewNonArchive == false) {
+        this.viewNonArchive = true;
+        this.viewArchive = false;
+      // }
     },
-    arhiveTask() {
-      this.arhOpened = true;
-    },
+    openArchiveTask() {
+      this.viewArchive = true;
+      this.viewNonArchive = false;
+    }
   }
 };
 </script>
