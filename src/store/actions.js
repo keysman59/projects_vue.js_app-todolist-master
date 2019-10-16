@@ -9,5 +9,13 @@ export default {
   archive({ commit }, index) {
     commit('archive', index);
     commit('saveTodo');
-  }
+  },
+  setName({ commit }, { name, id } ) {
+    commit('changeName', { name, id });
+    commit('saveTodo');
+  },
+  setDesc({ commit }, { desc, id } ) {
+    commit('changeDesc', { desc, id });
+    commit('saveTodo');
+  },
 }

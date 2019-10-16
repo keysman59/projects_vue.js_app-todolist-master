@@ -11,7 +11,7 @@
     <router-link :to="'/tast-details/' + data.todo.id">✎</router-link>
     <div class="index-block">{{ data.todo.id + 1 }}</div>
     <div class="name-block">{{ data.todo.name }}</div>
-    <div class="desc-block">{{ data.todo.desc }}</div>
+    <div class="desc-block">{{ data.todo.desc | truncate(data.todo.desc.length, '...') }}</div>
     <div class="date-block">{{ data.todo.date }}</div>
 
     <!-- <button class="todo-item__btn" v-if="!data.archive" @click="setArchive">В архив</button> -->
@@ -25,6 +25,16 @@ export default {
     setArchive() {
       this.$store.dispatch("archive", this.index);
     }
+  },
+  filters: {
+    truncate (text,length, suffix) {
+      console.log(length);
+      if(length > 60) {
+        return text.substring(0, 65) + suffix;
+      } else {
+        return text;
+      }
+    },
   }
 };
 </script>
@@ -65,7 +75,7 @@ export default {
 }
 
 .date-block {
-  width: 20%;
+  width: 13%;
   text-align: right;
 }
 </style>

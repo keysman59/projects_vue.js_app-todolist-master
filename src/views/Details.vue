@@ -3,58 +3,31 @@
     <!-- <pre>
       {{ todos }}
     </pre> -->
-
     <!-- {{currentToDo.todo.name}} -->
     <!-- {{ todos[1] }}  -->
+    <!-- NAME -->
     <div class="detailst-name" @click="openName" v-if="nameOpened">
       {{ currentToDo.todo.name }}
     </div>
     <div class="detailst-name" v-on:keyup.enter="closeName" v-if="!nameOpened">
-      <input class="detailst-name__input" v-model="name" />
+      <input class="detailst-name__input" v-on:keyup.enter="changeStoreName" v-model="name" />
     </div>
-
-    <div class="detailst-desc">
+    <!-- DESC -->
+    <div class="detailst-desc" @click="openDesc" v-if="descOpened">
       {{ currentToDo.todo.desc }}
     </div>
+    <div class="detailst-desc" v-on:keyup.enter="closeDesc" v-if="!descOpened">
+      <input class="detailst-name__input" v-on:keyup.enter="changeStoredesc" v-model="desc" />
+    </div>
+
+
+
 
     <div class="detailst-date">
       {{ currentToDo.todo.date }}
     </div>
-   
   </div>
-
 </template>
-
-
-  <!-- <div class="wrapper">
-
-    <div class="top-block">
-
-      <div class="left-block">
-        <h4 class="top-block__caption"  v-if="visibleCaption" @click.prevent="hideCaption">{{text}}</h4>
-        <div class="category-block" v-if="!visibleCaption">
-          <input v-model.lazy="text" class="category-block__input" type="text" />
-          <button href="#" @click.prevent="onClick" class="category-block__btn">Отправить</button>
-        </div>
-      </div>
-    </div>
-  </div> -->
-
-<!-- </template>
-
-
-
-
-
-
-
-
-
-
-
-
-  </div>
-</template> -->
 
 <script>
 export default {
@@ -67,14 +40,25 @@ export default {
   data() {
     return {
       nameOpened: true,
+      descOpened: true,
       name: '',
-
-
+      desc: '',
     }
   },
   computed: {
     todos() {
       return this.$store.getters.getTodos;
+    },
+    lastName() {
+      if(this.name != '') {
+        this.name = this.currentToDo.todo.name; 
+        
+      }
+      return this.name;
+    },
+    lastDesc() {
+      this.desc = this.currentToDo.todo.desc; 
+      return this.desc;
     },
     currentToDo () {
       return this.todos.find(item => item.todo.id === parseInt(this.id))
@@ -82,14 +66,29 @@ export default {
   },
   methods: {
     openName() {
-      console.log("change openName");
       this.nameOpened = false;
     },
     closeName() {
       this.nameOpened = true;
-      this.$store.dispatch('addTodo', {name: this.name, desc: this.descVal, date: this.dateNew});
-    }
+    },
+    openDesc() {
+      this.descOpened = false;
+    },
+    closeDesc() {
+      this.descOpened = true;
+    },
+    changeStoreName() {
+      if(this.name != '') { 
+        this.$store.dispatch("setName", { name : this.name, id : this.id });
+      }
+    },
+    changeStoredesc() {
+      if(this.desc != '') { 
+        this.$store.dispatch("setDesc", { desc : this.desc, id : this.id });
+      }
+    }    
   }
+
 
 }
 </script>
@@ -124,6 +123,7 @@ export default {
   height: 100%;
   outline: none;
   border: 1px solid #e5e5e5;
+  padding: 0 10px;
 }
 
 .detailst-desc {

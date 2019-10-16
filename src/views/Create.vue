@@ -16,7 +16,7 @@
     <div
       class="error"
       v-if="!$v.nameVal.maxLength"
-    >Название должно содержать не больше {{$v.nameVal .$params.maxLength.min}} символов.</div>
+    >Название должно содержать не больше {{$v.nameVal .$params.maxLength.max}} символов.</div>
     <h3 class="create__caption">Описание задачи:</h3>
     <textarea
       type="text"
@@ -44,7 +44,7 @@
     ></date-picker>
 
     <!-- <button class="create__btn" @click="addTodo" :disabled="$v.$invalid">Добавить</button> -->
-    <button @click="addTodo" :disabled="$v.$invalid">Добавить</button>
+    <button class="create__btn" @click="addTodo" :disabled="$v.$invalid">Добавить</button>
   </div>
 </template>
 
@@ -72,7 +72,7 @@ export default {
     nameVal: {
       required,
       minLength: minLength(4),
-      maxLength: maxLength(20)
+      maxLength: maxLength(40)
     },
     descVal: {
       required,
@@ -154,6 +154,19 @@ export default {
 }
 
 .create__btn {
+  margin-top: 15px;
+  padding: 12px 40px;
+    /* color: #FFFFFF; */
+  /* background: #8071F3; */
+  border: none;
+}
+
+.error {
+  color: #EB5757;
+  margin-top: 4px;
+}
+
+/* .create__btn {
   margin-top: 30px;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
@@ -173,5 +186,5 @@ export default {
   padding: 16px 34px;
   width: 40%;
   cursor: pointer;
-}
+} */
 </style>

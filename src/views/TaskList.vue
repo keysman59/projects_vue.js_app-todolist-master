@@ -1,13 +1,13 @@
 <template>
   <div class="task-list">
     <div class="filter">
-      <div class="common" @click="allTask">Задачи</div>
+      <div class="common">Задачи</div>
       <div class="deadline">Просрочены</div>
       <div class="archive" @click="arhiveTask">Архив</div>
     </div>
 
     <div class="tasks">
-      <todo-list type="Archive" v-if="arhOpened"></todo-list>
+      <todo-list type="Archive"></todo-list>
       <todo-list type="NonArchive" ></todo-list>
     </div>
   </div>
@@ -21,14 +21,14 @@ export default {
     TodoList
   },
   computed: {
-    // todos() {
-      // const name = `get${this.type}Todo`;
-      // return this.$store.getters[name];
+    todos() {
+      const name = `get${this.type}Todo`;
+      return this.$store.getters[name];
 
-    // },
-    // todos() {
-    //   return this.$store.getters.getTodos;
-    // },
+    },
+    todos() {
+      return this.$store.getters.getTodos;
+    },
   },
   data() {
     return {
