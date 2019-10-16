@@ -49,17 +49,17 @@ export default {
     todos() {
       return this.$store.getters.getTodos;
     },
-    lastName() {
-      if(this.name != '') {
-        this.name = this.currentToDo.todo.name; 
+    // lastName() {
+    //   if(this.name != '') {
+    //     this.name = this.currentToDo.todo.name; 
         
-      }
-      return this.name;
-    },
-    lastDesc() {
-      this.desc = this.currentToDo.todo.desc; 
-      return this.desc;
-    },
+    //   }
+    //   return this.name;
+    // },
+    // lastDesc() {
+    //   this.desc = this.currentToDo.todo.desc; 
+    //   return this.desc;
+    // },
     currentToDo () {
       return this.todos.find(item => item.todo.id === parseInt(this.id))
     }

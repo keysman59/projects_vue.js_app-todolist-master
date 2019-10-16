@@ -1,9 +1,9 @@
 <template>
   <div class="task-list">
     <div class="filter">
-      <div class="common" @click="toggleFilter('viewAll')">Задачи</div>
-      <div class="deadline" @click="toggleFilter('viewOverdue')">Просрочены</div>
-      <div class="archive" @click="toggleFilter('viewArchive')">Архив</div>
+      <div class="common" v-bind:class="{ active: viewAll }" @click="toggleFilter('viewAll')">Задачи</div>
+      <div class="deadline" v-bind:class="{ active: viewOverdue }" @click="toggleFilter('viewOverdue')">Просрочены</div>
+      <div class="archive" v-bind:class="{ active: viewArchive }" @click="toggleFilter('viewArchive')">Архив</div>
     </div>
 
     <div class="tasks">
@@ -31,9 +31,9 @@ export default {
 
       
         if (this.viewArchive) {
-          return this.$store.getters.getCurrentTodo;
-        } else if (this.viewAll) {
           return this.$store.getters.getArchiveTodo;
+        } else if (this.viewAll) {
+          return this.$store.getters.getCurrentTodo;
         } else if (this.viewOverdue) {
           return this.$store.getters.getExpiredTodo;
         }
@@ -80,14 +80,25 @@ export default {
 .common,
 .deadline,
 .archive {
-  border: 1px solid black;
+  border: 1px solid #545b62;
   width: 100px;
   height: 40px;
-  background: burlywood;
+  background-color: #6c757d;
+  color: #fff;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.common {
+  border-top-left-radius: .25rem;
+  border-bottom-left-radius: .25rem;
+}
+
+.archive {
+  border-top-right-radius: .25rem;
+  border-bottom-right-radius: .25rem;
 }
 
 .tasks {
@@ -103,15 +114,19 @@ export default {
   height: 40px;
 }
 
+.active {
+  background: #545b62;
+}
+
 .common:hover {
-  background: #d4b375;
+  background: #545b62;
 }
 
 .deadline:hover {
-  background: #d4b375;
+  background: #545b62;
 }
 
 .archive:hover {
-  background: #d4b375;
+  background: #545b62;
 }
 </style>

@@ -21,8 +21,9 @@ export default new Router({
       component: TaskList
     },
     {
-      path: "/tast-details",
+      path: "/tast-details/:id",
       name: "tast-details",
+      props: true,
       component: Details
     }
   ]
