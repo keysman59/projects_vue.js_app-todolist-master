@@ -5,9 +5,7 @@
       <div class="deadline" v-bind:class="{ active: viewOverdue }" @click="toggleFilter('viewOverdue')">Просрочены</div>
       <div class="archive" v-bind:class="{ active: viewArchive }" @click="toggleFilter('viewArchive')">Архив</div>
     </div>
-
     <div class="tasks">
-      <!-- <todo-list v-bind:title="post.title"></todo-list> -->
       <todo-list :todos="todos"></todo-list>
     </div>
   </div>
@@ -22,34 +20,13 @@ export default {
   },
   computed: {
     todos() {
-      // const name = `get${this.type}Todo`;
-      // return this.$store.getters[name];
-      // this.viewArchive, this.viewAll, this.viewOverdue
-      // Фильтрацию лучше сделать в store, передав туда фильтры как объект
-      // чтобы просто получать отфильтрованные через типа
-      // this.$store.getters.getTodos(filter)
-
-      
-        if (this.viewArchive) {
-          return this.$store.getters.getArchiveTodo;
-        } else if (this.viewAll) {
-          return this.$store.getters.getCurrentTodo;
-        } else if (this.viewOverdue) {
-          return this.$store.getters.getExpiredTodo;
-        }
-
-
-
-
-      // return this.$store.getters.getTodos.filter(item => {
-      //   if (this.viewArchive) {
-      //     return item.archive;
-      //   } else if (this.viewAll) {
-      //     return item;
-      //   } else if (this.viewOverdue) {
-      //     return new Date(item.todo.date.split(".").reverse()) < new Date();
-      //   }
-      // });
+      if (this.viewArchive) {
+        return this.$store.getters.getArchiveTodo;
+      } else if (this.viewAll) {
+        return this.$store.getters.getCurrentTodo;
+      } else if (this.viewOverdue) {
+        return this.$store.getters.getExpiredTodo;
+      }
     }
   },
   data() {
@@ -61,7 +38,6 @@ export default {
   },
   methods: {
     toggleFilter(fName) {
-      // содержимое параметра fName должно совпадать с именем переменной в data (view...)
       Object.keys(this.$data).forEach(k => {
         this[k] = fName === k;
       });

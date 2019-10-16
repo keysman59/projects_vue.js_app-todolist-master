@@ -1,18 +1,11 @@
 <template>
   <div class="details">
-    <!-- <pre>
-      {{ todos }}
-    </pre> -->
-    <!-- {{currentToDo.todo.name}} -->
-    <!-- {{ todos[1] }}  -->
-    <!-- NAME -->
     <div class="detailst-name" @click="openName" v-if="nameOpened">
       {{ currentToDo.todo.name }}
     </div>
     <div class="detailst-name" v-on:keyup.enter="closeName" v-if="!nameOpened">
       <input class="detailst-name__input" v-on:keyup.enter="changeStoreName" v-model="name" />
     </div>
-    <!-- DESC -->
     <div class="detailst-desc" @click="openDesc" v-if="descOpened">
       {{ currentToDo.todo.desc }}
     </div>
@@ -45,17 +38,6 @@ export default {
     todos() {
       return this.$store.getters.getTodos;
     },
-    // lastName() {
-    //   if(this.name != '') {
-    //     this.name = this.currentToDo.todo.name; 
-        
-    //   }
-    //   return this.name;
-    // },
-    // lastDesc() {
-    //   this.desc = this.currentToDo.todo.desc; 
-    //   return this.desc;
-    // },
     currentToDo () {
       return this.todos.find(item => item.todo.id === parseInt(this.id))
     }
@@ -84,12 +66,9 @@ export default {
       }
     }    
   }
-
-
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 
 .details {
@@ -114,7 +93,6 @@ export default {
   background: #f8f9fa;
 }
 
-
 .detailst-name {
   height: 20vh;
 }
@@ -134,97 +112,6 @@ export default {
 .detailst-date {
   height: 10vh;
 }
-
-
-// .wrapper {
-//     // TOP
-//     .top-block {
-//         display: flex;
-//         width: 60%;
-//         .left-block {
-//             padding: 30px;
-//             width: 30%;
-//             display: flex;
-//             align-items: center;
-//             background: #f8f9fa;
-//             border: 1px solid #d3d9df;
-//             color: #212529;
-//             margin-left: 15px;
-//             &:hover {
-//                 color: #212529;
-//                 background-color: #dae0e5;
-//                 border-color: #d3d9df;
-//                 cursor: pointer;
-//             &__caption {
-//                 // background: #f8f9fa;
-//                 // border-color: #f8f9fa;
-//                 // color: #212529;
-//                 // width: 30%;
-//                 // display: block;
-//                 // cursor: pointer;
-//                 // padding: 1.2em;
-//             }
-//             .category-block {
-//                 &__input {
-    
-//                 }
-//                 &__btn {
-    
-//                 }
-//             }
-//         }
-//         .add-field {
-//             padding: 30px;
-//             display: flex;  
-//             flex-direction: row;
-//             margin-left: 15px;
-//             background: #f8f9fa;
-//             border: 1px solid #d3d9df;
-//             color: #212529;
-//             width: 85%;
-//             display: block;
-//             cursor: pointer;
-//             padding: 1.2em;
-//             display: flex;
-//             align-items: center;
-//             border-radius: 50px;
-
-//             &:hover {
-//                 color: #212529;
-//                 background-color: #dae0e5;
-//                 border-color: #d3d9df;
-//                 cursor: pointer;
-//             }
-//             &__icon {
-//                 padding-left: 10px;
-//                 font-size: 20px;
-//             }
-//             &__caption {
-//                 padding-left: 10px;
-//             }
-//         }
-//     }
-
-
-//     }
-
-//     // PROJECT
-//     .add-project {
-//         padding: 30px;
-//         width: 10%;
-//         &__icon {
-//             font-size: 100px;
-//             color: #28a745;
-//         }
-//         &:hover {
-//             cursor: pointer;
-//         }
-//     }
-// }
-
-// body {
-//     font-family: Arial !important;
-// }
 
 </style>
 

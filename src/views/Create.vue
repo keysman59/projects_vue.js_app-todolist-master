@@ -42,23 +42,18 @@
       format="YYYY-MM-dd"
       v-model.trim="$v.dateVal.$model"
     ></date-picker>
-
-    <!-- <button class="create__btn" @click="addTodo" :disabled="$v.$invalid">Добавить</button> -->
     <button class="create__btn" @click="addTodo" :disabled="$v.$invalid">Добавить</button>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-// import TodoList from '@/components/TodoList';
+
 import DatePicker from "vue2-datepicker";
 import { required, minLength, maxLength } from "vuelidate/lib/validators";
-// import moment from 'moment';
 
 export default {
   name: "home",
   components: {
-    // TodoList,
     DatePicker
   },
   data() {
@@ -156,8 +151,6 @@ export default {
 .create__btn {
   margin-top: 15px;
   padding: 12px 40px;
-    /* color: #FFFFFF; */
-  /* background: #8071F3; */
   border: none;
   cursor: pointer;
   outline: none;
@@ -168,25 +161,4 @@ export default {
   margin-top: 4px;
 }
 
-/* .create__btn {
-  margin-top: 30px;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  font-family: "Source Sans Pro", Arial, sans-serif;
-  font-style: normal;
-  font-size: 14px;
-  line-height: 20px;
-  display: block;
-  text-align: center;
-  letter-spacing: 1.35px;
-  text-transform: uppercase;
-  color: #FFFFFF;
-  background: #8071F3;
-  border-radius: 4px;
-  border: none;
-  padding: 16px 34px;
-  width: 40%;
-  cursor: pointer;
-} */
 </style>
