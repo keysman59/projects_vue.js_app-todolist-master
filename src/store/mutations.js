@@ -15,13 +15,13 @@ export default {
     const nonArchive = state.todos.filter(item => !item.archive);
     const archive = state.todos.filter(item => item.archive);
     nonArchive[index].archive = true;
-    state.todos = [ ...archive ];
+    state.todos = [ ...archive, ...nonArchive ];
   },
   task(state, index) {
     const nonArchive = state.todos.filter(item => !item.archive);
     const archive = state.todos.filter(item => item.archive);
     archive[index].archive = false;
-    state.todos = [ ...nonArchive ];
+    state.todos = [ ...archive, ...nonArchive  ];
   },
   changeName(state, { name, id }) {
     return state.todos[id].todo.name = name;

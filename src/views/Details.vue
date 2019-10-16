@@ -110,6 +110,11 @@ export default {
   align-items: center;
 }
 
+.detailst-name:hover,.detailst-desc:hover {
+  background: #f8f9fa;
+}
+
+
 .detailst-name {
   height: 20vh;
 }
