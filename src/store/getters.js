@@ -1,15 +1,11 @@
 export default {
   getNonArchiveTodo(state) {
-    return state.todos.filter(item => item.archive == false)
+    return state.todos.filter(item => item.archive == false);
   },
   getArchiveTodo(state) {
-    return state.todos.filter(item => item.archive)
-  },
-  getExpiredTodo(state) {
-    return state.todos.filter(item => item.expired)
+    return state.todos.filter(item => item.archive);
   },
   getTodos(state) {
-    return state.todos
-  },
-
-}
+    return state.todos;
+  }
+};

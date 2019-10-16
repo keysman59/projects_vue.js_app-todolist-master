@@ -1,10 +1,5 @@
 <template>
   <div class="create">
-
-    <!-- {{ new Date().getFullYear() }}
-
-    {{ new Date().getMonth() }} -->
-
     <h3 class="create__caption">Новая задача:</h3>
     <input
       class="create__input"

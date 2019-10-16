@@ -1,19 +1,14 @@
 <template>
   <div class="task-list">
     <div class="filter">
-      <div class="common" @click="openCurrentTask">Задачи</div>
-      <div class="deadline">Просрочены</div>
-      <div class="archive" @click="openArchiveTask">Архив</div>
+      <div class="common" @click="toggleFilter('viewAll')">Задачи</div>
+      <div class="deadline" @click="toggleFilter('viewOverdue')">Просрочены</div>
+      <div class="archive" @click="toggleFilter('viewArchive')">Архив</div>
     </div>
 
     <div class="tasks">
       <!-- <todo-list v-bind:title="post.title"></todo-list> -->
-      <todo-list type="Archive" v-if="viewArchive"></todo-list>
-
-      <todo-list type="NonArchive" v-if="viewNonArchive"></todo-list>
-
-      <todo-list type="Expired" v-if="viewExpired"></todo-list>
-      
+      <todo-list :todos="todos"></todo-list>
     </div>
   </div>
 </template>
@@ -27,35 +22,35 @@ export default {
   },
   computed: {
     todos() {
-      const name = `get${this.type}Todo`;
-      return this.$store.getters[name];
-
-    },
-    todos() {
-      return this.$store.getters.getTodos;
-    },
+      // this.viewArchive, this.viewAll, this.viewOverdue
+      // Фильтрацию лучше сделать в store, передав туда фильтры как объект
+      // чтобы просто получать отфильтрованные через типа
+      // this.$store.getters.getTodos(filter)
+      return this.$store.getters.getTodos.filter(item => {
+        if (this.viewArchive) {
+          return item.archive;
+        } else if (this.viewAll) {
+          return item;
+        } else if (this.viewOverdue) {
+          return new Date(item.todo.date.split(".").reverse()) < new Date();
+        }
+      });
+    }
   },
   data() {
     return {
       viewArchive: false,
-      viewNonArchive: true,
-      viewExpired: false,
+      viewAll: true,
+      viewOverdue: false
     };
   },
   methods: {
-    openCurrentTask() {
-      // if(this.viewNonArchive == false) {
-        this.viewNonArchive = true;
-        this.viewArchive = false;
-      // }
-    },
-    openArchiveTask() {
-      this.viewArchive = true;
-      this.viewNonArchive = false;
-    },
-    openExpiredTask() {
-      this.viewArchive = true;
-      this.viewNonArchive = false;
+    toggleFilter(fName) {
+      // содержимое параметра fName должно совпадать с именем переменной в data (view...)
+      Object.keys(this.$data).forEach(k => {
+        this[k] = fName === k;
+      });
+      console.log(this.$data);
     }
   }
 };
