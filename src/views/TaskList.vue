@@ -22,19 +22,34 @@ export default {
   },
   computed: {
     todos() {
+      // const name = `get${this.type}Todo`;
+      // return this.$store.getters[name];
       // this.viewArchive, this.viewAll, this.viewOverdue
       // Фильтрацию лучше сделать в store, передав туда фильтры как объект
       // чтобы просто получать отфильтрованные через типа
       // this.$store.getters.getTodos(filter)
-      return this.$store.getters.getTodos.filter(item => {
+
+      
         if (this.viewArchive) {
-          return item.archive;
+          return this.$store.getters.getCurrentTodo;
         } else if (this.viewAll) {
-          return item;
+          return this.$store.getters.getArchiveTodo;
         } else if (this.viewOverdue) {
-          return new Date(item.todo.date.split(".").reverse()) < new Date();
+          return this.$store.getters.getExpiredTodo;
         }
-      });
+
+
+
+
+      // return this.$store.getters.getTodos.filter(item => {
+      //   if (this.viewArchive) {
+      //     return item.archive;
+      //   } else if (this.viewAll) {
+      //     return item;
+      //   } else if (this.viewOverdue) {
+      //     return new Date(item.todo.date.split(".").reverse()) < new Date();
+      //   }
+      // });
     }
   },
   data() {
@@ -50,7 +65,6 @@ export default {
       Object.keys(this.$data).forEach(k => {
         this[k] = fName === k;
       });
-      console.log(this.$data);
     }
   }
 };

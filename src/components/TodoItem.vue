@@ -10,13 +10,15 @@
     {{ data }} : {{ index }}-->
     <router-link :to="'/tast-details/' + data.todo.id">✎</router-link>
     <div class="index-block">{{ data.todo.id + 1 }}</div>
+    архив:{{ data.archive }}
+
     <div class="archive__btn-block" v-if="!data.archive">
       <button class="todo-item__btn" @click="setArchive">в архив</button>
     </div>
+
     <div class="archive__btn-block">
       <button class="todo-item__btn" v-if="data.archive" @click="setTask">к выполнению</button>
     </div>
-
     <div class="name-block">{{ data.todo.name }}</div>
     <div class="desc-block">{{ data.todo.desc | truncate(data.todo.desc.length, '...') }}</div>
     <div class="date-block">{{ data.todo.date }}</div>
@@ -36,7 +38,6 @@ export default {
   },
   filters: {
     truncate(text, length, suffix) {
-      console.log(length);
       if (length > 60) {
         return text.substring(0, 65) + suffix;
       } else {
