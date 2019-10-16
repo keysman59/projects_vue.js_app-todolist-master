@@ -88,7 +88,6 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-
   color: #212529;
   background-color: #f8f9fa;
   border-color: #d3d9df;

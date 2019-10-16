@@ -19,10 +19,6 @@
     <div class="detailst-desc" v-on:keyup.enter="closeDesc" v-if="!descOpened">
       <input class="detailst-name__input" v-on:keyup.enter="changeStoredesc" v-model="desc" />
     </div>
-
-
-
-
     <div class="detailst-date">
       {{ currentToDo.todo.date }}
     </div>

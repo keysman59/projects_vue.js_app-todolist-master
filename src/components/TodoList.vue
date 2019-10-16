@@ -12,14 +12,7 @@ export default {
     TodoItem
   },
   props: ["type", "todos"],
-  computed: {
-    // todos() {
-    //   const name = `get${this.type}Todo`;
-    //   console.log("todolist.vue name");
-    //   console.log(name);
-    //   return this.$store.getters[name];
-    // }
-  }
+
 };
 </script>
 
